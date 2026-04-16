@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WildConnect | Researcher-Volunteer Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80'); background-size: cover; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans">
+
+    <nav class="bg-emerald-800 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">🌿 WildConnect</h1>
+            <div class="space-x-6">
+                <a href="#" class="hover:text-emerald-200">Find Projects</a>
+                <a href="#" class="bg-emerald-600 px-4 py-2 rounded-lg hover:bg-emerald-500">Post Study</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-gradient text-white py-20 text-center">
+        <h2 class="text-5xl font-extrabold mb-4">Join the Frontlines of Conservation</h2>
+        <p class="text-xl text-emerald-100 mb-8">Connecting wildlife researchers with passionate volunteers worldwide.</p>
+        <input type="text" id="searchInput" onkeyup="filterProjects()" placeholder="Search species, location, or researcher..." class="w-1/2 p-4 rounded-full text-gray-800 shadow-2xl focus:outline-none focus:ring-4 focus:ring-emerald-400">
+    </header>
+
+    <main class="container mx-auto py-12 px-4">
+        <h3 class="text-3xl font-bold text-gray-800 mb-8">Active Field Studies</h3>
+        <div id="projectGrid" class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition project-card">
+                <div class="p-6">
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Himalayas, India</span>
+                    <h4 class="text-xl font-bold mt-2 mb-3">Snow Leopard Population Survey</h4>
+                    <p class="text-gray-600 text-sm mb-4">Assist Dr. Aris Thorne in analyzing camera trap footage and collecting scat samples for DNA analysis.</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-6">
+                        <span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded">5 Vacancies</span>
+                    </div>
+                    <button onclick="openModal('Snow Leopard Survey')" class="w-full bg-emerald-700 text-white py-2 rounded hover:bg-emerald-800 font-semibold">Apply to Volunteer</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition project-card">
+                <div class="p-6">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Great Barrier Reef</span>
+                    <h4 class="text-xl font-bold mt-2 mb-3">Coral Bleaching Monitoring</h4>
+                    <p class="text-gray-600 text-sm mb-4">Diver certification required. Helping Sarah Chen document reef recovery and temperatures.</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-6">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">Remote/In-person</span>
+                    </div>
+                    <button onclick="openModal('Coral Monitoring')" class="w-full bg-emerald-700 text-white py-2 rounded hover:bg-emerald-800 font-semibold">Apply to Volunteer</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition project-card">
+                <div class="p-6">
+                    <span class="text-xs font-bold text-orange-600 uppercase tracking-widest">Amazon Rainforest</span>
+                    <h4 class="text-xl font-bold mt-2 mb-3">Jaguar Habitat Mapping</h4>
+                    <p class="text-gray-600 text-sm mb-4">GIS experience preferred. Work with the Amazon Wildlife Trust to map territory expansion.</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-6">
+                        <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded">Data Entry Only</span>
+                    </div>
+                    <button onclick="openModal('Jaguar Mapping')" class="w-full bg-emerald-700 text-white py-2 rounded hover:bg-emerald-800 font-semibold">Apply to Volunteer</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-8 shadow-2xl">
+            <h3 id="modalTitle" class="text-2xl font-bold mb-4 text-emerald-800">Application</h3>
+            <form onsubmit="submitForm(event)">
+                <input type="text" placeholder="Full Name" required class="w-full p-2 mb-4 border rounded">
+                <input type="email" placeholder="Email Address" required class="w-full p-2 mb-4 border rounded">
+                <textarea placeholder="Tell us about your experience..." class="w-full p-2 mb-4 border rounded h-32"></textarea>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 text-gray-500">Cancel</button>
+                    <button type="submit" class="px-6 py-2 bg-emerald-700 text-white rounded font-bold">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function filterProjects() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('project-card');
+            
+            for (let card of cards) {
+                let text = card.innerText.toLowerCase();
+                card.style.display = text.includes(input) ? "block" : "none";
+            }
+        }
+
+        function openModal(title) {
+            document.getElementById('modalTitle').innerText = "Apply: " + title;
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            alert("Application Sent Successfully! (Demo Only: No data was actually sent)");
+            closeModal();
+        }
+    </script>
+
+</body>
+</html>
