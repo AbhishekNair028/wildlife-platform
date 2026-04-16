@@ -3,261 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WildConnect | Global Conservation Hub</title>
+    <title>WildConnect | Global Conservation Network</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .hero-gradient { 
-            background: linear-gradient(rgba(10, 45, 10, 0.7), rgba(10, 45, 10, 0.7)), 
-                        url('https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1500&q=80'); 
-            background-size: cover; 
-            background-position: center;
+            background: linear-gradient(rgba(10, 30, 10, 0.75), rgba(10, 30, 10, 0.75)), 
+                        url('https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&w=1500&q=80'); 
+            background-size: cover; background-position: center;
         }
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #059669; border-radius: 10px; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .project-card:hover { transform: translateY(-10px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     </style>
 </head>
-<body class="bg-slate-50 font-sans text-gray-900 custom-scroll">
+<body class="bg-gray-50 text-slate-900 scroll-smooth">
 
-    <nav class="bg-emerald-900 text-white sticky top-0 z-50 shadow-2xl">
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <i class="fas fa-leaf text-2xl text-emerald-400"></i>
-                <span class="text-2xl font-black tracking-tighter">WILDCONNECT</span>
+                <div class="bg-emerald-600 p-2 rounded-lg">
+                    <i class="fas fa-paw text-white"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-emerald-900">WildConnect</span>
             </div>
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#projects" class="hover:text-emerald-400 transition">Field Studies</a>
-                <a href="#impact" class="hover:text-emerald-400 transition">Global Impact</a>
-                <a href="#database" class="hover:text-emerald-400 transition">Species DB</a>
+            <div class="hidden lg:flex space-x-8 font-bold text-sm uppercase tracking-widest text-gray-500">
+                <a href="#projects" class="hover:text-emerald-600">Expeditions</a>
+                <a href="#map" class="hover:text-emerald-600">Global Map</a>
+                <a href="#dashboard" class="hover:text-emerald-600">My Portal</a>
             </div>
-            <button onclick="openModal('New Research Project')" class="bg-emerald-500 hover:bg-emerald-400 px-5 py-2 rounded-full font-bold transition transform hover:scale-105">
-                + Post Study
-            </button>
+            <div class="flex items-center space-x-4">
+                <button onclick="openModal('Researcher Login')" class="text-sm font-bold text-emerald-700">Login</button>
+                <button onclick="openModal('Join Network')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-emerald-200 transition">Get Involved</button>
+            </div>
         </div>
     </nav>
 
-    <header class="hero-gradient text-white py-32 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-6 inline-block">2026 Conservation Initiative</span>
-            <h2 class="text-6xl font-black mb-6 leading-tight">The Earth is calling.<br><span class="text-emerald-400">Will you answer?</span></h2>
-            <p class="text-xl text-emerald-100 mb-10 opacity-90">Bridging the gap between elite wildlife researchers and a global community of dedicated volunteers.</p>
+    <header class="hero-gradient text-white py-32 px-6">
+        <div class="container mx-auto text-center">
+            <div class="inline-flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full mb-8 backdrop-blur-md border border-white/20">
+                <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span></span>
+                <span class="text-xs font-bold uppercase tracking-widest">Live: 42 New Missions Posted Today</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">Data for the Planet.<br>Hands for the <span class="text-emerald-400 italic">Wild.</span></h1>
+            <p class="text-xl text-emerald-50/80 mb-12 max-w-2xl mx-auto">The world's largest open-source bridge connecting 5,000+ wildlife biologists with volunteers like you.</p>
             
-            <div class="relative max-w-2xl mx-auto">
-                <i class="fas fa-search absolute left-5 top-5 text-gray-400"></i>
-                <input type="text" id="searchInput" onkeyup="filterProjects()" placeholder="Search by species (e.g. Tiger), Region, or Habitat..." 
-                       class="w-full p-5 pl-14 rounded-2xl text-gray-800 shadow-2xl focus:outline-none focus:ring-4 focus:ring-emerald-500/50 text-lg">
+            <div class="bg-white p-2 rounded-2xl shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-2">
+                <input type="text" id="searchInput" onkeyup="filterProjects()" placeholder="Try 'India', 'Marine', or 'Endangered'..." class="flex-grow p-4 rounded-xl text-gray-800 focus:outline-none">
+                <button class="bg-emerald-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-emerald-700 transition">Search Missions</button>
             </div>
         </div>
     </header>
 
-    <div id="impact" class="bg-white border-b">
-        <div class="container mx-auto px-6 py-10">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div><p class="text-3xl font-black text-emerald-800">1,240</p><p class="text-gray-500 text-sm uppercase font-bold">Active Studies</p></div>
-                <div><p class="text-3xl font-black text-emerald-800">15k+</p><p class="text-gray-500 text-sm uppercase font-bold">Volunteers</p></div>
-                <div><p class="text-3xl font-black text-emerald-800">82</p><p class="text-gray-500 text-sm uppercase font-bold">Countries</p></div>
-                <div><p class="text-3xl font-black text-emerald-800">$4.2M</p><p class="text-gray-500 text-sm uppercase font-bold">Funds Raised</p></div>
-            </div>
+    <section class="bg-white border-b sticky top-[73px] z-40">
+        <div class="container mx-auto px-6 py-4 flex overflow-x-auto space-x-4 no-scrollbar">
+            <button onclick="filterType('all')" class="whitespace-nowrap px-6 py-2 rounded-full bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">All Missions</button>
+            <button onclick="filterType('Mammals')" class="whitespace-nowrap px-6 py-2 rounded-full bg-gray-50 hover:bg-emerald-50 font-bold border transition">🦁 Mammals</button>
+            <button onclick="filterType('Marine')" class="whitespace-nowrap px-6 py-2 rounded-full bg-gray-50 hover:bg-emerald-50 font-bold border transition">🐋 Marine</button>
+            <button onclick="filterType('Birds')" class="whitespace-nowrap px-6 py-2 rounded-full bg-gray-50 hover:bg-emerald-50 font-bold border transition">🦅 Birds</button>
+            <button onclick="filterType('Reptiles')" class="whitespace-nowrap px-6 py-2 rounded-full bg-gray-50 hover:bg-emerald-50 font-bold border transition">🦎 Reptiles</button>
+            <button onclick="filterType('Insects')" class="whitespace-nowrap px-6 py-2 rounded-full bg-gray-50 hover:bg-emerald-50 font-bold border transition">🐝 Insects</button>
+            <button onclick="filterType('Plants')" class="whitespace-nowrap px-6 py-2 rounded-full bg-gray-50 hover:bg-emerald-50 font-bold border transition">🌱 Botany</button>
         </div>
-    </div>
+    </section>
 
     <main class="container mx-auto py-16 px-6" id="projects">
-        
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <div>
-                <h3 class="text-4xl font-black text-slate-800">Explore Opportunities</h3>
-                <p class="text-gray-500 mt-2">Filter by conservation type to find your perfect mission.</p>
-            </div>
-            <div class="flex flex-wrap gap-2">
-                <button onclick="filterType('all')" class="px-4 py-2 rounded-lg bg-emerald-800 text-white font-bold">All</button>
-                <button onclick="filterType('Mammals')" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-emerald-100 font-bold transition">Mammals</button>
-                <button onclick="filterType('Marine')" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-emerald-100 font-bold transition">Marine</button>
-                <button onclick="filterType('Birds')" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-emerald-100 font-bold transition">Birds</button>
-                <button onclick="filterType('Reptiles')" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-emerald-100 font-bold transition">Reptiles</button>
-            </div>
-        </div>
-
-        <div id="projectGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-2xl transition duration-500 project-card" data-type="Mammals">
-                <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=600&q=80" class="h-48 w-full object-cover" alt="Snow Leopard">
-                <div class="p-8">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-bold text-emerald-600 uppercase tracking-tighter">Himalayas, India</span>
-                        <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-[10px] font-black uppercase">Endangered</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mt-2 mb-3">Ghost of the Mountain Tracking</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Join Dr. Aris Thorne in the Spiti Valley. Volunteers help install thermal camera traps and catalog unique spot patterns to estimate local population density.</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-calendar mr-3 text-emerald-500"></i> Oct 2026 - Dec 2026</div>
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-map-marker-alt mr-3 text-emerald-500"></i> High Altitude Base Camp</div>
-                    </div>
-                    <button onclick="openModal('Snow Leopard Tracking')" class="w-full bg-emerald-900 text-white py-4 rounded-2xl hover:bg-emerald-800 font-black tracking-wide transition shadow-lg shadow-emerald-900/20">APPLY FOR FIELDWORK</button>
+        <div id="projectGrid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Mammals">
+                <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-emerald-600 uppercase">Himalayas</span><span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded">Critical</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Snow Leopard Scat DNA</h4>
+                    <p class="text-gray-500 text-xs mb-4">Collecting samples at 4000m altitude to map genetic diversity of the 'Ghost of the Mountain'.</p>
+                    <button onclick="openModal('Snow Leopard')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
                 </div>
             </div>
 
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-2xl transition duration-500 project-card" data-type="Marine">
-                <img src="https://images.unsplash.com/photo-1518467166778-b88f373ffec7?auto=format&fit=crop&w=600&q=80" class="h-48 w-full object-cover" alt="Sea Turtle">
-                <div class="p-8">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-bold text-blue-600 uppercase tracking-tighter">Costa Rica</span>
-                        <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-[10px] font-black uppercase">Vulnerable</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mt-2 mb-3">Leatherback Nesting Guard</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Nightly beach patrols to protect nesting mothers from predators and poachers. Volunteers will assist in tagging and egg counting for the Tortuguero Trust.</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-calendar mr-3 text-blue-500"></i> May 2026 - July 2026</div>
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-users mr-3 text-blue-500"></i> 12 Spots Remaining</div>
-                    </div>
-                    <button onclick="openModal('Turtle Nesting Guard')" class="w-full bg-blue-900 text-white py-4 rounded-2xl hover:bg-blue-800 font-black tracking-wide transition shadow-lg shadow-blue-900/20">JOIN THE PATROL</button>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Marine">
+                <img src="https://images.unsplash.com/photo-1518467166778-b88f373ffec7?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-blue-600 uppercase">Costa Rica</span><span class="text-[10px] bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">Vulnerable</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Hatchling Night Guard</h4>
+                    <p class="text-gray-500 text-xs mb-4">Protecting leatherback hatchlings as they make their first run to the Pacific Ocean.</p>
+                    <button onclick="openModal('Sea Turtles')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
                 </div>
             </div>
 
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-2xl transition duration-500 project-card" data-type="Mammals">
-                <img src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=600&q=80" class="h-48 w-full object-cover" alt="Elephant">
-                <div class="p-8">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-bold text-emerald-600 uppercase tracking-tighter">Kenya, Tsavo</span>
-                        <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-[10px] font-black uppercase">Critical</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mt-2 mb-3">Elephant Corridor Mapping</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Using GIS drones to map migratory routes and mitigate human-wildlife conflict in local farming villages. Data analysis can be done remotely or on-site.</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-calendar mr-3 text-emerald-500"></i> Continuous Enrollment</div>
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-laptop mr-3 text-emerald-500"></i> Remote Options Available</div>
-                    </div>
-                    <button onclick="openModal('Elephant GIS Mapping')" class="w-full bg-emerald-900 text-white py-4 rounded-2xl hover:bg-emerald-800 font-black tracking-wide transition shadow-lg shadow-emerald-900/20">CONTRIBUTE DATA</button>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Mammals">
+                <img src="https://images.unsplash.com/photo-1544070282-591d487ca53e?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-emerald-600 uppercase">Nepal</span><span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded">Endangered</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Panda Habitat Mapping</h4>
+                    <p class="text-gray-500 text-xs mb-4">Surveying bamboo forest density to predict red panda migration shifts.</p>
+                    <button onclick="openModal('Red Panda')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
                 </div>
             </div>
 
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-2xl transition duration-500 project-card" data-type="Birds">
-                <img src="https://images.unsplash.com/photo-1543536448-d209d2d13a1c?auto=format&fit=crop&w=600&q=80" class="h-48 w-full object-cover" alt="Owl">
-                <div class="p-8">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-tighter">Oregon, USA</span>
-                        <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-[10px] font-black uppercase">Stable</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mt-2 mb-3">Nocturnal Bio-Acoustics</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Help the Forestry Service process thousands of hours of audio data to identify the presence of the elusive Great Gray Owl in protected timberlands.</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-headphones mr-3 text-indigo-500"></i> Sound Analysis Skillset</div>
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-wifi mr-3 text-indigo-500"></i> 100% Remote Study</div>
-                    </div>
-                    <button onclick="openModal('Owl Audio Analysis')" class="w-full bg-indigo-900 text-white py-4 rounded-2xl hover:bg-indigo-800 font-black tracking-wide transition shadow-lg shadow-indigo-900/20">START LISTENING</button>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Marine">
+                <img src="https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-blue-600 uppercase">South Africa</span><span class="text-[10px] bg-gray-100 text-gray-700 px-2 py-0.5 rounded">Stable</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Acoustic Fin Tagging</h4>
+                    <p class="text-gray-500 text-xs mb-4">Joining Dr. Meyer on research vessels to tag sharks for migratory data tracking.</p>
+                    <button onclick="openModal('Great White')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
                 </div>
             </div>
 
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-2xl transition duration-500 project-card" data-type="Reptiles">
-                <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&w=600&q=80" class="h-48 w-full object-cover" alt="Komodo Dragon">
-                <div class="p-8">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-bold text-orange-600 uppercase tracking-tighter">Komodo Island</span>
-                        <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-[10px] font-black uppercase">Vulnerable</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mt-2 mb-3">Reptilian Apex Study</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Observe behavior and feeding habits of the world's largest lizard. Requires physical stamina for hiking through rugged island terrain with the research team.</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-thermometer-half mr-3 text-orange-500"></i> Extreme Heat Prep</div>
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-shield-alt mr-3 text-orange-500"></i> Safety Briefing Req.</div>
-                    </div>
-                    <button onclick="openModal('Komodo Dragon Study')" class="w-full bg-orange-900 text-white py-4 rounded-2xl hover:bg-orange-800 font-black tracking-wide transition shadow-lg shadow-orange-900/20">APPLY TO EXPEDITION</button>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Insects">
+                <img src="https://images.unsplash.com/photo-1533512900331-564537b06880?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-orange-600 uppercase">Mexico</span><span class="text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded">Migration</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Monarch Count 2026</h4>
+                    <p class="text-gray-500 text-xs mb-4">Annual census of overwintering butterfly colonies in Michoacán forests.</p>
+                    <button onclick="openModal('Monarch')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
                 </div>
             </div>
 
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-2xl transition duration-500 project-card" data-type="Marine">
-                <img src="https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&w=600&q=80" class="h-48 w-full object-cover" alt="Whale">
-                <div class="p-8">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-bold text-blue-600 uppercase tracking-tighter">Baja California</span>
-                        <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-[10px] font-black uppercase">Endangered</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mt-2 mb-3">Marine Giant Photogrammetry</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Use specialized software to measure whale body condition from drone imagery. Your work helps assess the health of the krill-dependent population.</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-ship mr-3 text-blue-500"></i> At-Sea Placement</div>
-                        <div class="flex items-center text-sm text-gray-500"><i class="fas fa-camera mr-3 text-blue-500"></i> Photo ID Focus</div>
-                    </div>
-                    <button onclick="openModal('Blue Whale Study')" class="w-full bg-blue-900 text-white py-4 rounded-2xl hover:bg-blue-800 font-black tracking-wide transition shadow-lg shadow-blue-900/20">BOARD THE VESSEL</button>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Reptiles">
+                <img src="https://images.unsplash.com/photo-1548332159-f831349f2571?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-orange-600 uppercase">Galapagos</span><span class="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded">Stable</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Giant Tortoise Health</h4>
+                    <p class="text-gray-500 text-xs mb-4">Assisting vet teams with annual checkups and weight measurements.</p>
+                    <button onclick="openModal('Tortoise')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
                 </div>
             </div>
+
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Mammals">
+                <img src="https://images.unsplash.com/photo-1614027126733-75778cca09be?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-emerald-600 uppercase">Tanzania</span><span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded">Vulnerable</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Serengeti Pride Census</h4>
+                    <p class="text-gray-500 text-xs mb-4">Identifying individual lions by whisker patterns to track pride dynamics.</p>
+                    <button onclick="openModal('Lion')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Plants">
+                <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-emerald-600 uppercase">California</span><span class="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded">Iconic</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Post-Fire Seedling Audit</h4>
+                    <p class="text-gray-500 text-xs mb-4">Counting new growth in fire-affected areas to assess forest recovery.</p>
+                    <button onclick="openModal('Sequoia')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Birds">
+                <img src="https://images.unsplash.com/photo-1517783999520-f068d7431a60?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-indigo-600 uppercase">Antarctica</span><span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded">Near Threat</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Ice Shelf Colony Count</h4>
+                    <p class="text-gray-500 text-xs mb-4">Using satellite imagery and ground counts to monitor colony size.</p>
+                    <button onclick="openModal('Penguin')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Insects">
+                <img src="https://images.unsplash.com/photo-1508933256082-936657e2a969?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-orange-600 uppercase">UK / Remote</span><span class="text-[10px] bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">Critical</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Pollinator Route Mapping</h4>
+                    <p class="text-gray-500 text-xs mb-4">A citizen science project tracking urban garden pollinator visits.</p>
+                    <button onclick="openModal('Honey Bees')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Mammals">
+                <img src="https://images.unsplash.com/photo-1590420485404-f86d22b8abf8?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-emerald-600 uppercase">Yellowstone</span><span class="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded">Stable</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Wolf Howl Audio Recording</h4>
+                    <p class="text-gray-500 text-xs mb-4">Deploying acoustic sensors to identify pack communication zones.</p>
+                    <button onclick="openModal('Wolf')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Marine">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400" class="h-48 w-full object-cover">
+                <div class="p-6">
+                    <div class="flex justify-between mb-2"><span class="text-[10px] font-bold text-blue-600 uppercase">Fiji</span><span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Resilient</span></div>
+                    <h4 class="font-extrabold text-lg mb-2">Anemone Health Survey</h4>
+                    <p class="text-gray-500 text-xs mb-4">Scuba-based data collection on symbiotic reef relationships.</p>
+                    <button onclick="openModal('Clownfish')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-emerald-600 transition">APPLY</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Mammals">
+                <img src="https://images.unsplash.com/photo-1503919005314-30d93d07d823?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">Giraffe Neck Pattern ID</h4><p class="text-gray-500 text-xs mb-4">Kenya: Individual identification through photo matching software.</p><button onclick="openModal('Giraffe')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Birds">
+                <img src="https://images.unsplash.com/photo-1444464666168-49d633b867ad?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">Songbird Migration Netting</h4><p class="text-gray-500 text-xs mb-4">Canada: Safe banding of boreal birds to track summer breeding.</p><button onclick="openModal('Songbird')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Reptiles">
+                <img src="https://images.unsplash.com/photo-1528156438606-7ac3b1f129c1?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">King Cobra Nest Guard</h4><p class="text-gray-500 text-xs mb-4">Western Ghats: Assisting in relocating nests from human zones.</p><button onclick="openModal('Cobra')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Mammals">
+                <img src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">Brown Bear Hibernation</h4><p class="text-gray-500 text-xs mb-4">Alaska: Monitoring den emergence via remote trail cams.</p><button onclick="openModal('Bear')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Marine">
+                <img src="https://images.unsplash.com/photo-1551244072-5d12893278ab?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">Manta Ray Belly ID</h4><p class="text-gray-500 text-xs mb-4">Maldives: Diving to photograph unique ventral spot patterns.</p><button onclick="openModal('Manta')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Mammals">
+                <img src="https://images.unsplash.com/photo-1543158266-0066955047b1?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">Koala Scat Analysis</h4><p class="text-gray-500 text-xs mb-4">Australia: Assessing stress levels in post-fire koala populations.</p><button onclick="openModal('Koala')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Birds">
+                <img src="https://images.unsplash.com/photo-1504121456602-0442308b3c2c?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">Bald Eagle Nest Watch</h4><p class="text-gray-500 text-xs mb-4">Florida: Observing and reporting fledgling success rates.</p><button onclick="openModal('Eagle')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Mammals">
+                <img src="https://images.unsplash.com/photo-1574068468668-a05a11f871da?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">Arctic Fox Fur Change</h4><p class="text-gray-500 text-xs mb-4">Sweden: Tracking timing of seasonal coat color shifts.</p><button onclick="openModal('Arctic Fox')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Insects">
+                <img src="https://images.unsplash.com/photo-1464349153735-7db519247a32?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">Beetle Diversity Audit</h4><p class="text-gray-500 text-xs mb-4">Borneo: Ground-level insect collection in rainforest floor.</p><button onclick="openModal('Beetle')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden project-card" data-type="Reptiles">
+                <img src="https://images.unsplash.com/photo-1511225070737-5af5ac9a690d?w=400" class="h-48 w-full object-cover">
+                <div class="p-6"><h4 class="font-extrabold text-lg mb-2">Green Iguana Growth</h4><p class="text-gray-500 text-xs mb-4">Florida: Tracking the expansion of invasive iguana colonies.</p><button onclick="openModal('Iguana')" class="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold">APPLY</button></div>
+            </div>
+
         </div>
     </main>
 
-    <section id="database" class="bg-slate-900 text-white py-20">
+    <section id="dashboard" class="bg-slate-900 py-20 text-white">
         <div class="container mx-auto px-6">
-            <h3 class="text-3xl font-black mb-10 text-center">Researcher's Species Database</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-center hover:border-emerald-500 transition cursor-help">
-                    <p class="text-xs text-gray-400 uppercase font-bold mb-1">Panthera uncia</p>
-                    <p class="font-bold">Snow Leopard</p>
+            <h3 class="text-3xl font-black mb-12 flex items-center"><i class="fas fa-chart-line mr-4 text-emerald-400"></i> My Impact Dashboard</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700">
+                    <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">Total Contributions</p>
+                    <p class="text-4xl font-black text-emerald-400">0 Data Points</p>
+                    <p class="text-sm text-gray-500 mt-4 italic">Start a mission to see your stats grow.</p>
                 </div>
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-center hover:border-emerald-500 transition cursor-help">
-                    <p class="text-xs text-gray-400 uppercase font-bold mb-1">Loxodonta</p>
-                    <p class="font-bold">Afr. Elephant</p>
+                <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700">
+                    <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">Leaderboard Rank</p>
+                    <p class="text-4xl font-black text-blue-400">Unranked</p>
+                    <p class="text-sm text-gray-500 mt-4">Join the community of 15,000+ members.</p>
                 </div>
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-center hover:border-emerald-500 transition cursor-help">
-                    <p class="text-xs text-gray-400 uppercase font-bold mb-1">Dermochelys</p>
-                    <p class="font-bold">Leatherback</p>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-center hover:border-emerald-500 transition cursor-help">
-                    <p class="text-xs text-gray-400 uppercase font-bold mb-1">Varanus</p>
-                    <p class="font-bold">Komodo Dragon</p>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-center hover:border-emerald-500 transition cursor-help">
-                    <p class="text-xs text-gray-400 uppercase font-bold mb-1">Strix nebulosa</p>
-                    <p class="font-bold">Great Gray Owl</p>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-center hover:border-emerald-500 transition cursor-help">
-                    <p class="text-xs text-gray-400 uppercase font-bold mb-1">Balaenoptera</p>
-                    <p class="font-bold">Blue Whale</p>
+                <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700">
+                    <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">Badges Earned</p>
+                    <div class="flex space-x-2 mt-4 opacity-20">
+                        <i class="fas fa-seedling text-3xl"></i>
+                        <i class="fas fa-water text-3xl"></i>
+                        <i class="fas fa-mountain text-3xl"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-white border-t py-12 px-6">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-            <p>&copy; 2026 WildConnect Platform. For educational and research purposes.</p>
-            <div class="flex space-x-6 mt-4 md:mt-0">
-                <a href="#" class="hover:text-emerald-600">Privacy Policy</a>
-                <a href="#" class="hover:text-emerald-600">Researcher Ethics</a>
-                <a href="#" class="hover:text-emerald-600">Contact Support</a>
-            </div>
+    <section class="bg-emerald-50 py-12 border-t border-emerald-100 overflow-hidden">
+        <div class="flex animate-pulse items-center justify-center space-x-12 whitespace-nowrap text-emerald-800 font-bold text-sm tracking-widest uppercase">
+            <span>● Live: New sighting of Blue Whale in Baja</span>
+            <span>● Alert: 3 spots left for Kenya Expedition</span>
+            <span>● Update: GPS Tag 82-X Active (Snow Leopard)</span>
+            <span>● News: Coral recovery up 12% in Moorea</span>
+            <span>● Live: New sighting of Blue Whale in Baja</span>
         </div>
-    </footer>
+    </section>
 
-    <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-[100] flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-10 shadow-2xl relative">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-800">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-            <h3 id="modalTitle" class="text-3xl font-black mb-2 text-emerald-900">Apply to Study</h3>
-            <p id="modalSub" class="text-gray-500 mb-8">Please provide your details for the research lead.</p>
-            
+    <div id="modal" class="fixed inset-0 bg-black/60 backdrop-blur-md hidden z-[100] flex items-center justify-center p-4">
+        <div class="bg-white rounded-[40px] max-w-lg w-full p-10 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-gray-400 hover:text-black transition"><i class="fas fa-times text-xl"></i></button>
+            <h3 id="modalTitle" class="text-4xl font-black mb-2 text-emerald-950 leading-tight">Apply</h3>
+            <p class="text-gray-400 mb-8 font-medium">This application goes directly to the Lead Researcher.</p>
             <form onsubmit="submitForm(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Full Name</label>
-                    <input type="text" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Email Address</label>
-                    <input type="email" required class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Experience Level</label>
-                    <select class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl outline-none">
-                        <option>Beginner (Enthusiast)</option>
-                        <option>Intermediate (Biology Student)</option>
-                        <option>Expert (Field Professional)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Statement of Interest</label>
-                    <textarea required placeholder="Why do you want to join this specific project?" class="w-full p-4 bg-gray-50 border border-gray-100 rounded-xl h-28 focus:ring-2 focus:ring-emerald-500 outline-none transition"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-black text-lg hover:bg-emerald-700 transition transform hover:-translate-y-1 shadow-xl">
-                    SUBMIT APPLICATION
-                </button>
+                <input type="text" placeholder="Your Name" required class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-emerald-500">
+                <input type="email" placeholder="Email Address" required class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-emerald-500">
+                <textarea placeholder="Why are you a good fit for this project?" class="w-full p-4 bg-gray-50 rounded-2xl border-none h-32 outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                <button type="submit" class="w-full bg-emerald-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-emerald-700 shadow-xl shadow-emerald-200 transition transform active:scale-95">SEND APPLICATION</button>
             </form>
         </div>
     </div>
@@ -266,7 +289,6 @@
         function filterProjects() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('project-card');
-            
             for (let card of cards) {
                 let text = card.innerText.toLowerCase();
                 card.style.display = text.includes(input) ? "block" : "none";
@@ -287,19 +309,15 @@
         function openModal(title) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Stop scrolling
         }
 
         function closeModal() {
             document.getElementById('modal').classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Resume scrolling
         }
 
         function submitForm(event) {
             event.preventDefault();
-            // In a real app, you'd send this data to a server. 
-            // For GitHub Pages, we simulate success.
-            alert("SUCCESS! \n\nYour application has been encrypted and sent to the lead researcher. They will review your profile and contact you via email within 3-5 business days.");
+            alert("Application Encrypted & Sent! \n\nThe researcher will review your profile. You'll receive a confirmation email shortly.");
             closeModal();
         }
     </script>
