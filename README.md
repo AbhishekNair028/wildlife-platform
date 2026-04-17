@@ -72,6 +72,9 @@ Utilized for a modern, responsive "Glassmorphism" UI design without high latency
 ## 👥 Contributors
 
 * **Abhishek Nair** * Lead Developer, UI/UX Architect, and Data Logic.
+* Rajin Matkar- Front End
+* Nikhil Krishnadas - Backend, Api Database
+* Arsalan-Backend Api Database 
 
 ---
 
